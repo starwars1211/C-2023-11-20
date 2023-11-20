@@ -15,6 +15,7 @@ AMap::AMap(int NewX, int NewY, char NewShape, int NewSortOrder)
 	SetX(NewX);
 	SetY(NewY);
 	SortOrder = NewSortOrder;
+	bCollide = true;
 }
 
 AMap::~AMap()

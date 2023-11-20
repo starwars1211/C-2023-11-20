@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <windows.h>
+#include "World.h"
 
 APlayer::APlayer()
 {
@@ -29,8 +30,11 @@ void APlayer::Tick(int KeyCode)
 	__super::Tick(KeyCode);
 
 	if (KeyCode == 'A' || KeyCode == 'a')
-	{
-		X--;
+	{	
+		
+			//GEngine->GetWorld()->GetallActors();
+			X--;
+		
 	}
 	if (KeyCode == 'D' || KeyCode == 'd')
 	{
@@ -43,5 +47,25 @@ void APlayer::Tick(int KeyCode)
 	if (KeyCode == 'S' || KeyCode == 's')
 	{
 		Y++;
+	}
+
+}
+
+bool APlayer::IsCollide(int NewX, int NewY)
+{
+	for (const auto& Actor : GEngine->GetWorld()->GetallActors())
+	{
+		if (this == Actor)
+		{
+			continue;
+		}
+
+		if (Actor->bCollide == true &&
+			Actor->GetX() == NewX &&
+			Actor->GetY == NewY)
+		{
+			return true;
+		}
+
 	}
 }

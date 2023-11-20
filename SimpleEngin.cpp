@@ -11,15 +11,18 @@ SimpleEngin::SimpleEngin()
 {
 	Init();
 }
+
 SimpleEngin::~SimpleEngin()
 {
 	Term();
 }
+
 void SimpleEngin::Init()
 {
 	IsRunning = true;
 	World = new UWorld();
 }
+
 void SimpleEngin::Run()
 {
 	while (IsRunning)
@@ -32,16 +35,19 @@ void SimpleEngin::Run()
 		Render();
 	}
 }
+
 void SimpleEngin::Stop()
 {
 	IsRunning = false;
 }
+
 void SimpleEngin::Term()
 {
 	IsRunning = false;
 	delete  World;
 }
-void SimpleEngin::Loadlevel(std::string Filename)
+
+void SimpleEngin::LoadLevel(std::string Filename)
 {
 	//Save
 	//Memory -> Disk L Ssrialize , Text(JSON, csv), binary(umap)
@@ -49,7 +55,7 @@ void SimpleEngin::Loadlevel(std::string Filename)
 
 	std::string Map[10] = {
 		"**********",
-		"*P       *",
+		"*      P *",
 		"*        *",
 		"*        *",
 		"*       M*",
@@ -59,21 +65,24 @@ void SimpleEngin::Loadlevel(std::string Filename)
 		"*       G*",
 		"**********",
 	};
-
+	
 	for (int Y = 0; Y < 10; ++Y)
 	{
 		for (int X = 0; X < 10; ++X)
 		{
+			
 			if (Map[Y][X] == '*')
 			{
 				//Wall
 				GetWorld()->SpawnActor(new AMap(X, Y));
 			}
+			
 			else if (Map[Y][X] == 'P')
 			{
 				//Player
 				GetWorld()->SpawnActor(new APlayer(X, Y));
 			}
+			
 			else if (Map[Y][X] == 'M')
 			{
 				//Monster
@@ -84,19 +93,24 @@ void SimpleEngin::Loadlevel(std::string Filename)
 				//Goal
 				GetWorld()->SpawnActor(new AGoal(X, Y));
 			}
+			
 			else if (Map[Y][X] == ' ')
 			{
 				//Floar
-				//GetWorld()->SpawnActor(new AFloar(X, Y));
+				GetWorld()->SpawnActor(new AFloar(X, Y));
 			}
 			//Floor
+			//GetWorld()->SpawnActor(new AFloar(X, Y));
+			
 		}
 
 	}
+	
 }
 int SimpleEngin::Input()
 {
 	int KeyCode = _getch();
+
 	return KeyCode;
 }
 void SimpleEngin::Tick(int KeyCode)
@@ -107,5 +121,3 @@ void SimpleEngin::Render()
 {
 	GetWorld()->Render();
 }
-
-

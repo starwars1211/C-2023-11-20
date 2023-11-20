@@ -4,13 +4,13 @@
 
 class UWorld;
 class AActor;
-class Amap;
-
 
 class SimpleEngin
 {
-public:
 	SimpleEngin();
+
+public:
+	
 	virtual ~SimpleEngin();
 
 	 void Init();
@@ -21,9 +21,20 @@ public:
 
 	 void Term();
 
-	 void Loadlevel(std::string Filename );
+	 void LoadLevel(std::string Filename );
 
 	 inline UWorld* GetWorld() const{ return World; };
+
+	 static const SimpleEngin* GetInstance()
+	 {
+		 if (Instance == nullptr)
+		 {
+			 Instance = new SimpleEngin();
+		 }
+		 return Instance;
+	 }
+
+
 
 protected:
 	 UWorld* World;
@@ -32,5 +43,10 @@ protected:
 	 int Input();
 	 void Tick(int KeyCode);
 	 void Render();
+
+	 static SimpleEngin* Instance;
+
 };
+#define GEngine SimpleEngin::GetInstance()
+
 

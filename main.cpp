@@ -2,9 +2,10 @@
 
 int main()
 {
-	SimpleEngin* MyEngine = new SimpleEngin();
+	SimpleEngin* MyEngine = SimpleEngin::GetInstance();
 
-	MyEngine->Loadlevel("a.smap");
+
+	MyEngine->LoadLevel("a.smap");
 	MyEngine->Run();
 
 	delete MyEngine;
