@@ -1,9 +1,4 @@
 #include "SimpleEngin.h"
-#include "Player.h"
-#include "World.h"
-
-
-using namespace std;
 
 int main()
 {

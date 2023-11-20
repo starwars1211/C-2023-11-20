@@ -1,6 +1,4 @@
 #pragma once
-#include <windows.h>
-#include <iostream>
 class AActor
 {
 public:
@@ -12,17 +10,28 @@ public:
 	virtual void Tick(int KeyCode);
 	virtual void Render();
 
-	//Accessor
-	inline int GetX() const {return X; }
-	inline int GetY() const {return Y; }
+	//accessor
+	inline int GetX() const { return X; }
+	inline int GetY() const { return Y; }
 
 	inline void SetX(int NewX) { X = NewX; }
 	inline void SetY(int NewY) { Y = NewY; }
-	
+
+	virtual bool operator<(const AActor& RHS) const
+	{
+		return this->SortOrder < RHS.SortOrder;
+	}
+
+	virtual bool operator>(const AActor& RHS) const
+	{
+		return this->SortOrder > RHS.SortOrder;
+	}
+
+	int SortOrder;
+
 protected:
 	int X;
 	int Y;
 
 	char Shape;
 };
-

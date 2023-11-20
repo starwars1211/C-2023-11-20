@@ -93,7 +93,7 @@ void SimpleEngin::Loadlevel(std::string Filename)
 		}
 
 	}
-};
+}
 int SimpleEngin::Input()
 {
 	int KeyCode = _getch();

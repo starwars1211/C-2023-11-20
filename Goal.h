@@ -4,8 +4,8 @@ class AGoal : public AActor
 {
 public:
 	AGoal();
-	AGoal(int NewX, int NewY, char Shape = 'G');
-	virtual	~AGoal();
+	AGoal(int NewX, int NewY, char NewShape = 'G', int NewSortOrder = 200);
+	virtual ~AGoal();
 
 };
 
