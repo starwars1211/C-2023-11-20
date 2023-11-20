@@ -1,5 +1,11 @@
 #pragma once
-class Uworld;
+#include "World.h"
+#include <string>
+
+class UWorld;
+class AActor;
+class Amap;
+
 
 class SimpleEngin
 {
@@ -15,12 +21,16 @@ public:
 
 	 void Term();
 
-	 inline Uworld* GetWorld() const{ return World; };
+	 void Loadlevel(std::string Filename );
+
+	 inline UWorld* GetWorld() const{ return World; };
 
 protected:
-	 Uworld* World;
+	 UWorld* World;
 	 bool IsRunning;
 
-
+	 int Input();
+	 void Tick(int KeyCode);
+	 void Render();
 };
 
