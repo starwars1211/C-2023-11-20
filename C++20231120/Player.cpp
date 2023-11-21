@@ -24,10 +24,11 @@ APlayer::~APlayer()
 {
 }
 
-void APlayer::Tick(int KeyCode)
+void APlayer::Tick()
 {
 	//AActor::Tick(KeyCode);
-	__super::Tick(KeyCode);
+	__super::Tick();
+	int KeyCode = SimpleEngin::KeyCode;
 
 	if (KeyCode == 'A' || KeyCode == 'a')
 	{	
@@ -58,6 +59,10 @@ void APlayer::Tick(int KeyCode)
 		{
 			Y++;
 		}
+	}
+	if (KeyCode == 27)
+	{
+		GEngine->Stop();
 	}
 
 }

@@ -8,6 +8,7 @@
 #include "Goal.h"
 
 SimpleEngin* SimpleEngin::Instance = nullptr;
+int SimpleEngin::KeyCode = 0;
 
 SimpleEngin::SimpleEngin()
 {
@@ -29,8 +30,8 @@ void SimpleEngin::Run()
 {
 	while (IsRunning)
 	{
-		int KeyCode = Input(); ///Input
-		Tick(KeyCode); //Tick
+		Input(); ///Input
+		Tick(); //Tick
 		//Clear Screen
 		system("Cls");
 		Render(); //Render
@@ -110,16 +111,14 @@ void SimpleEngin::LoadLevel(std::string Filename)
 	GetWorld()->SortRenderOrder();
 }
 
-int SimpleEngin::Input()
+void SimpleEngin::Input()
 {
-	int KeyCode = _getch();
-
-	return KeyCode;
+	KeyCode = _getch();
 }
 
-void SimpleEngin::Tick(int KeyCode)
+void SimpleEngin::Tick()
 {
-	GetWorld()->Tick(KeyCode);
+	GetWorld()->Tick();
 }
 
 void SimpleEngin::Render()
